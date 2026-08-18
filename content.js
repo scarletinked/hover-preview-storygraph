@@ -65,6 +65,7 @@
 
   function renderResult(data) {
     const titleHtml = `<div class="sg-title"></div>`;
+    const genresHtml = data.genres && data.genres.length ? `<div class="sg-genres"></div>` : '';
     let ratingHtml = '';
     if (data.ratingScore) {
       ratingHtml = `
@@ -86,7 +87,16 @@
     if (data.error) {
       popup.innerHTML = `${titleHtml}<div class="sg-status">Couldn't load details</div>`;
     } else {
-      popup.innerHTML = `${titleHtml}${ratingHtml}${descHtml}`;
+      popup.innerHTML = `${titleHtml}${genresHtml}${ratingHtml}${descHtml}`;
+      if (genresHtml) {
+        const genresEl = popup.querySelector('.sg-genres');
+        data.genres.forEach((genre) => {
+          const tag = document.createElement('span');
+          tag.className = 'sg-genre-tag';
+          tag.textContent = genre;
+          genresEl.appendChild(tag);
+        });
+      }
       if (data.description) {
         popup.querySelector('.sg-description').textContent = data.description;
       }
@@ -133,6 +143,9 @@
         }
         const description = descriptionEl ? descriptionEl.textContent.trim() : null;
 
+        const genreEls = bookDoc.querySelectorAll('.book-page-tag-section span[class*="text-teal-700"]');
+        const genres = [...new Set([...genreEls].map((el) => el.textContent.trim()).filter(Boolean))];
+
         let ratingScore = null;
         let ratingCount = null;
         const ratingEl = reviewsDoc.querySelector('[aria-label*="Book rating"]');
@@ -146,7 +159,7 @@
           }
         }
 
-        const result = { description, ratingScore, ratingCount, error: false };
+        const result = { description, genres, ratingScore, ratingCount, error: false };
         cache.set(bookId, result);
         return result;
       } catch (err) {

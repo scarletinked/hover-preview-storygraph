@@ -1,6 +1,6 @@
 # Hover Preview for StoryGraph
 
-A small Chrome extension for [The StoryGraph](https://app.thestorygraph.com). Hover over a book cover for about half a second and a popup shows that book's description and community rating, without clicking through to its page.
+A small Chrome extension for [The StoryGraph](https://app.thestorygraph.com). Hover over a book cover for about half a second and a popup shows that book's genres, description, and community rating, without clicking through to its page.
 
 **Unofficial and not affiliated with, endorsed by, or sponsored by The StoryGraph.**
 
@@ -19,7 +19,7 @@ To pick up changes after editing the code, click the refresh icon on the extensi
 ## How it works
 
 - A content script runs only on `app.thestorygraph.com` and listens for hover on `<a href="/books/...">` links that wrap a cover image.
-- After ~500ms of continuous hover, it fetches that book's page (`/books/<id>`) and its community-reviews fragment (`/books/<id>/community_reviews`) in the background, and parses out the description and star rating.
+- After ~500ms of continuous hover, it fetches that book's page (`/books/<id>`) and its community-reviews fragment (`/books/<id>/community_reviews`) in the background, and parses out the genres, description, and star rating.
 - Results are cached per book for the rest of the page session, so re-hovering the same cover is instant.
 - The description shown is StoryGraph's own truncated preview (the same text visible before clicking "Show More" on their page) — not the full text.
 
