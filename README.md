@@ -8,7 +8,11 @@ A small Chrome extension for [The StoryGraph](https://app.thestorygraph.com). Ho
 
 ## Install
 
-Chrome doesn't have this in the Web Store, so you install it as an unpacked extension:
+**[Get it from the Chrome Web Store](https://chromewebstore.google.com/detail/gfhhdandcpieifhpmdlopjchgmemooph)** — installs and updates automatically.
+
+### Running from source instead
+
+If you want the latest code straight from this repo (which may be ahead of the Web Store release), install it unpacked:
 
 1. Download or clone this repository.
 2. Open `chrome://extensions` in Chrome.
