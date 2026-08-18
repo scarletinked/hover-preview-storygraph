@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Hover Preview for StoryGraph",
+  "version": "1.0.2",
+  "description": "Hover over a book cover on The StoryGraph to see its description and community rating. Unofficial, not affiliated with StoryGraph.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://app.thestorygraph.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

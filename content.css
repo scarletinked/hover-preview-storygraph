@@ -1,0 +1,75 @@
+#sg-hover-popup {
+  position: fixed;
+  z-index: 2147483647;
+  width: 320px;
+  max-height: 380px;
+  overflow-y: auto;
+  background: #ffffff;
+  color: #1f2933;
+  border: 1px solid #d8dee4;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  padding: 12px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+#sg-hover-popup.sg-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#sg-hover-popup .sg-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #0b1620;
+}
+
+#sg-hover-popup .sg-rating {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #0e7490;
+}
+
+#sg-hover-popup .sg-rating .sg-rating-count {
+  font-weight: 400;
+  color: #52606d;
+  font-size: 12px;
+}
+
+#sg-hover-popup .sg-description {
+  color: #334452;
+  white-space: pre-line;
+}
+
+#sg-hover-popup .sg-status {
+  color: #7b8794;
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+  #sg-hover-popup {
+    background: #1f2933;
+    color: #e4e7eb;
+    border-color: #323f4b;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+  #sg-hover-popup .sg-title {
+    color: #f5f7fa;
+  }
+  #sg-hover-popup .sg-description {
+    color: #cbd2d9;
+  }
+  #sg-hover-popup .sg-status {
+    color: #9aa5b1;
+  }
+}
