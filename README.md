@@ -43,4 +43,4 @@ This repo is ready to be loaded unpacked as-is. If you want it listed in the Web
 
 ## License
 
-GPL-3.0 — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
