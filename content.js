@@ -175,17 +175,26 @@
     return promise;
   }
 
-  async function triggerPopup(anchor) {
+  async function revealPopup(anchor) {
     const bookId = getBookId(anchor);
     if (!bookId) return;
 
     const img = anchor.querySelector('img');
     const title = img ? img.alt : '';
 
+    if (cache.has(bookId)) {
+      // Fetch already finished while we were waiting out the hover delay.
+      renderResult({ title, ...cache.get(bookId) });
+      if (lastMouseEvent) positionPopup(lastMouseEvent.clientX, lastMouseEvent.clientY);
+      showPopup();
+      return;
+    }
+
     renderLoading(title);
     if (lastMouseEvent) positionPopup(lastMouseEvent.clientX, lastMouseEvent.clientY);
     showPopup();
 
+    // Reuses the fetch kicked off on mouseover (fetchBookData dedupes via inFlight).
     const data = await fetchBookData(bookId);
 
     if (currentAnchor !== anchor) return; // mouse moved away before data arrived
@@ -203,7 +212,11 @@
       clearHoverTimer();
       currentAnchor = anchor;
       lastMouseEvent = e;
-      hoverTimer = setTimeout(() => triggerPopup(anchor), HOVER_DELAY_MS);
+
+      const bookId = getBookId(anchor);
+      if (bookId) fetchBookData(bookId); // start loading immediately, display waits for the timer
+
+      hoverTimer = setTimeout(() => revealPopup(anchor), HOVER_DELAY_MS);
     },
     true
   );

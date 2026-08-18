@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Hover Preview for StoryGraph",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Hover over a book cover on The StoryGraph to see its genres, description, and community rating. Unofficial, not affiliated with StoryGraph.",
   "icons": {
     "16": "icons/icon16.png",

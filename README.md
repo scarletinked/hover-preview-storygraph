@@ -19,8 +19,8 @@ To pick up changes after editing the code, click the refresh icon on the extensi
 ## How it works
 
 - A content script runs only on `app.thestorygraph.com` and listens for hover on `<a href="/books/...">` links that wrap a cover image.
-- After ~500ms of continuous hover, it fetches that book's page (`/books/<id>`) and its community-reviews fragment (`/books/<id>/community_reviews`) in the background, and parses out the genres, description, and star rating.
-- Results are cached per book for the rest of the page session, so re-hovering the same cover is instant.
+- The fetch starts the instant you hover a cover (that book's page at `/books/<id>` and its community-reviews fragment at `/books/<id>/community_reviews`), but the popup only becomes visible after ~500ms of continuous hover — so the wait is however long is left after the network request, not the network request stacked on top of the wait.
+- Results are cached per book for the rest of the page session, so re-hovering the same cover is instant, and hovering the same cover again while a request is still in flight reuses that request instead of firing a second one.
 - The description shown is StoryGraph's own truncated preview (the same text visible before clicking "Show More" on their page) — not the full text.
 
 StoryGraph doesn't offer a public API, so this works by reading the same HTML the page itself renders. If StoryGraph changes their markup, the popup may stop finding data until the selectors in `content.js` are updated.
