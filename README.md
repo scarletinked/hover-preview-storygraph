@@ -1,5 +1,7 @@
 # Hover Preview for StoryGraph
 
+![Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fscarletinked%2Fhover-preview-storygraph%2Fmain%2Fmanifest.json&query=%24.version&label=version&color=0e7490)
+
 A small Chrome extension for [The StoryGraph](https://app.thestorygraph.com). Hover over a book cover for about half a second and a popup shows that book's genres, description, and community rating, without clicking through to its page.
 
 **Unofficial and not affiliated with, endorsed by, or sponsored by The StoryGraph.**
